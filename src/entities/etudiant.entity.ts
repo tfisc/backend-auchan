@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, Column, JoinColumn, OneToMany, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Utilisateur } from './utilisateur.entity';
 import { Etablissement } from './etablissement.entity';
 import { Cursus } from './cursus.entity';
@@ -14,17 +14,18 @@ export class Etudiant extends Utilisateur {
     @Column('float')
     note: number;
 
-    @OneToOne(() => Etablissement)
+    @ManyToOne(() => Etablissement)
     @JoinColumn()
     etablissement: Etablissement;
 
-    @OneToOne(() => Cursus)
+    @ManyToOne(() => Cursus)
     @JoinColumn()
     cursus: Cursus;
 
-    @OneToMany(type => PlageHoraire, horaire => horaire.etudiant)
+    @OneToMany(type => PlageHoraire, horaire => horaire.etudiant, { cascade: true })
     horaires: PlageHoraire[];
 
-    @OneToMany(type => Matiere, matiere => matiere.etudiant)
+    @ManyToMany(type => Matiere, { cascade: true })
+    @JoinTable()
     matieres: Matiere[];
 }

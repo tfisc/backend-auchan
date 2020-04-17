@@ -14,4 +14,13 @@ export class UtilisateurController {
     ): Promise<Utilisateur> {
         return await this.utilisateurService.createUtilisateur(utilisateurDto);
     }
+
+    @Post('login')
+    async login(
+        @Body() info: { mail: string, password: string }
+    ): Promise<Utilisateur> {
+        return await this.utilisateurService.login(info);
+    }
+
+
 }

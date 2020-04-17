@@ -15,6 +15,9 @@ import { CursusModule } from './cursus/cursus.module';
 import { EtablissementModule } from './etablissement/etablissement.module';
 import { MatiereModule } from './matiere/matiere.module';
 import { PlageHoraire } from './entities/plage-horaire.entity';
+import { Enfant } from './entities/enfant.entity';
+import { Classe } from './entities/classe.entity';
+import { EtatCours } from './entities/etat-cours.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -25,7 +28,7 @@ import { PlageHoraire } from './entities/plage-horaire.entity';
     password: 'password',
     database: 'workshop-auchan',
     entities: [
-      Utilisateur, Etudiant, Cursus, Etablissement, Academie, TypeUtilisateur, Matiere, PlageHoraire,
+      Utilisateur, Etudiant, Cursus, Etablissement, Academie, TypeUtilisateur, Matiere, PlageHoraire, Enfant, Classe, EtatCours,
     ],
     synchronize: true,
   }),

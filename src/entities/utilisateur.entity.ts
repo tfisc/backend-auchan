@@ -4,9 +4,14 @@ import {
     Column,
     OneToOne,
     JoinColumn,
+    ManyToOne,
+    ManyToMany,
+    JoinTable,
+    OneToMany,
 } from 'typeorm';
 
 import { TypeUtilisateur } from './type-utilisateur.entity';
+import { Enfant } from './enfant.entity';
 
 @Entity()
 export class Utilisateur {
@@ -28,11 +33,14 @@ export class Utilisateur {
     @Column()
     description: string;
 
-    @Column('bytea', { nullable: true })
-    photo: Buffer;
+    @Column({ nullable: true })
+    photo: string;
 
-    @OneToOne(() => TypeUtilisateur)
+    @ManyToOne(() => TypeUtilisateur)
     @JoinColumn()
     type: TypeUtilisateur;
+
+    @OneToMany(() => Enfant, enfant => enfant.idParent)
+    enfants: Enfant[];
 
 }

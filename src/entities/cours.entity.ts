@@ -1,9 +1,10 @@
-import { OneToOne, JoinColumn, PrimaryGeneratedColumn, Entity } from 'typeorm';
+import { OneToOne, JoinColumn, PrimaryGeneratedColumn, Entity, ManyToOne, Column } from 'typeorm';
 
 import { PlageHoraire } from './plage-horaire.entity';
 import { Enfant } from './enfant.entity';
 import { EtatCours } from './etat-cours.entity';
 import { Matiere } from './matiere.entity';
+import { Etudiant } from './etudiant.entity';
 
 @Entity()
 export class Cours {
@@ -11,19 +12,26 @@ export class Cours {
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @OneToOne(() => PlageHoraire)
+    @Column('timestamptz')
+    date: number;
+
+    @OneToOne(() => PlageHoraire, { cascade: true })
     @JoinColumn()
     plageHoraire: PlageHoraire;
 
-    @OneToOne(() => Enfant)
+    @ManyToOne(() => Enfant)
     @JoinColumn()
     idEnfant: Enfant;
 
-    @OneToOne(() => EtatCours)
+    @ManyToOne(() => Etudiant)
+    @JoinColumn()
+    idEtudiant: Etudiant;
+
+    @ManyToOne(() => EtatCours)
     @JoinColumn()
     idEtat: EtatCours;
 
-    @OneToOne(() => Matiere)
+    @ManyToOne(() => Matiere)
     @JoinColumn()
     idMatiere: Matiere;
 

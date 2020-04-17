@@ -6,6 +6,6 @@ export class UtilisateurDto {
     mail: string;
     password: string;
     description: string;
-    photo: Buffer;
+    photo: string;
     type: TypeUtilisateur;
 }

@@ -5,10 +5,13 @@ import {
     OneToOne,
     JoinColumn,
     OneToMany,
+    ManyToOne,
+    ManyToMany,
+    JoinTable,
 } from 'typeorm';
 
 import { Utilisateur } from './utilisateur.entity';
-import { Classe } from './classe.entity' ;
+import { Classe } from './classe.entity';
 
 @Entity()
 export class Enfant {
@@ -18,11 +21,13 @@ export class Enfant {
     @Column()
     prenom: string;
 
-    @OneToOne(() => Utilisateur)
-    @JoinColumn()
+    @Column()
+    code: string;
+
+    @ManyToOne(() => Utilisateur, utilisateur => utilisateur.enfants)
     idParent: Utilisateur;
 
-    @OneToOne(() => Classe)
+    @ManyToOne(() => Classe)
     @JoinColumn()
     idClasse: Classe;
 }
