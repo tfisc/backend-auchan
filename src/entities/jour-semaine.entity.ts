@@ -5,10 +5,10 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class TypeUtilisateur {
+export class JourSemaine {
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @Column({ enum: ['ADMINISTRATEUR', 'PARENT', 'ETUDIANT'] })
+    @Column({ enum: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'] })
     libelle: string;
 }

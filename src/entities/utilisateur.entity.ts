@@ -28,12 +28,11 @@ export class Utilisateur {
     @Column()
     description: string;
 
-    @Column()
-    photo: string;
+    @Column('bytea', { nullable: true })
+    photo: Buffer;
 
     @OneToOne(() => TypeUtilisateur)
     @JoinColumn()
     type: TypeUtilisateur;
-
 
 }

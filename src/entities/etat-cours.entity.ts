@@ -5,10 +5,10 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class TypeUtilisateur {
+export class EtatCours {
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @Column({ enum: ['ADMINISTRATEUR', 'PARENT', 'ETUDIANT'] })
+    @Column({ enum: ['En attente', 'Validé', 'Refusé', 'En cours', 'Terminé'] })
     libelle: string;
 }
